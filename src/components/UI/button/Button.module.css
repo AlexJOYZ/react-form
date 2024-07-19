@@ -1,0 +1,18 @@
+.button{
+  padding: 10px;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.submit{
+  color: #5ba0fa;
+}
+.default{
+  color: #000;
+}
+.delete{
+  color: #d56168;
+}

@@ -1,0 +1,11 @@
+.user__page{
+  width: 100%;
+}
+
+.user__info{
+  margin: 20px auto;
+  width: 800px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
