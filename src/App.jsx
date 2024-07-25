@@ -1,13 +1,32 @@
-import { Outlet } from 'react-router-dom';
-import { Sidebar } from './components/Sidebar';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import './styles/App.css'
+import { useState } from 'react';
+import { Layout } from './components/Layout';
+import { Loader } from './components/UI/loader/Loader';
+import { UsersContext } from './context';
+import { ErrorPage } from './pages/ErrorPage';
+import { UserEdit } from './pages/UserEdit';
+import { UserIdPage } from './pages/UserIdPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    loader: Loader,
+    children: [
+      { path: '/users/:userId', element: <UserIdPage /> },
+      { path: '/edit', element: <UserEdit /> },
+      { path: '/users/edit/:id', element: <UserEdit /> },
+    ],
+  },
+]);
 
 export const App = () => {
+  const [users, setUsers] = useState([]);
   return (
-    <div className='container'>
-      <Sidebar />
-      <Outlet />
-    </div>
+    <UsersContext.Provider value={{ users, setUsers }}>
+      <RouterProvider router={router} />
+    </UsersContext.Provider>
   );
 };

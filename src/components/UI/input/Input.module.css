@@ -8,6 +8,27 @@
     left: 10px;
     visibility: hidden;
   }
+  label {
+    display: none;
+    visibility: hidden;
+    font-size: 18px;
+    min-width: 33.333333%;
+  }
+}
+.input,
+.input2 {
+  padding: 10px;
+  padding-left: 15px;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  width: 100%;
+}
+.input2 {
+  visibility: hidden;
+  display: none;
 }
 .search {
   input {
@@ -17,13 +38,28 @@
     visibility: visible;
   }
 }
-.input {
-  padding: 10px;
-  padding-left: 15px;
-  background-color: #fff;
-  outline: none;
-  border: none;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+
+.with-label {
+  display: flex;
   width: 100%;
+
+  label {
+    visibility: visible;
+    display: block;
+  }
+}
+.with-label-2 {
+  display: flex;
+  width: 100%;
+  .input2 {
+    visibility: visible;
+    display: block;
+  }
+  input+input{
+    margin-left: 10px;
+  }
+  label {
+    visibility: visible;
+    display: block;
+  }
 }

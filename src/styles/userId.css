@@ -8,4 +8,26 @@
   display: flex;
   align-items: center;
   gap: 40px;
+  h1{
+    margin-bottom: 8px;
+  }
+  span{
+    cursor: pointer;
+    user-select: none;
+    margin-left: 10px;
+  }
+  a{
+    font-size: 18px;
+    color: #5ba0fa;
+    text-decoration: none;
+  }
+  p{
+    margin:20px 0;
+  }
+}
+.user__form{
+  display: flex;
+  gap: 10px;
+  bottom: 0;
+  position: relative;
 }
