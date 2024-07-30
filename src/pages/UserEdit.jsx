@@ -1,20 +1,32 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../components/UI/button/Button';
 import { Input } from '../components/UI/input/Input';
+import { Modal } from '../components/UI/modal/Modal';
 import { Textarea } from '../components/UI/textarea/Textarea';
 
 import { useContext, useEffect, useState } from 'react';
 import { UsersService } from '../API/UsersService';
 import { Loader } from '../components/UI/loader/Loader';
+import { regNameAndSurname, regTwitter, regURL } from '../const/regular';
 import { UsersContext } from '../context';
 import { useFetching } from '../hooks/useFetching';
 import '../styles/userEdit.css';
+import { isFormEmpty } from '../utils/isFormEmpty';
 
 export const UserEdit = () => {
   const navigation = useNavigate();
   const { users, setUsers } = useContext(UsersContext);
   const { id } = useParams();
   const [user, setUser] = useState(null);
+  const [isModal, setIsModal] = useState(false);
+  // const [inputDirty, setInputDirty] = useState({
+  //   firstName: false,
+  //   lastName: false,
+  //   twitter: false,
+  //   notes: false,
+  //   avatar: false,
+  // });
+  const [formError, setFormError] = useState('');
 
   const [form, setForm] = useState({
     firstName: '',
@@ -44,7 +56,7 @@ export const UserEdit = () => {
         firstName: '',
         lastName: '',
         twitter: '',
-        notesText: '',
+        notes: '',
         avatar: '',
       });
     }
@@ -52,38 +64,58 @@ export const UserEdit = () => {
 
   const saveUserData = async (event) => {
     event.preventDefault();
-    const userId = `${Date.now()}`;
-    if (id) {
-      const updatedUser = {
-        ...user,
-        ...form,
-      };
-      UsersService.updateUserDataById(updatedUser, id);
-      setUsers(
-        users.map((user) => {
-          if (user.id === id) {
-            return updatedUser;
-          }
-          return user;
-        }),
-      );
+    if (isFormEmpty(form)) {
+      setFormError('Должны быть заполнены все поля!');
+      setIsModal(true);
+      return;
+    } else if (
+      !form.lastName.match(regNameAndSurname) ||
+      !form.firstName.match(regNameAndSurname)
+    ) {
+      setFormError('Некорректный формат имени или фамилии!');
+      setIsModal(true);
+      return;
+    } else if (!form.twitter.match(regTwitter)) {
+      setFormError('Некорректный формат имени пользователя в Twitter!');
+      setIsModal(true);
+      return;
+    } else if (!form.avatar.match(regURL)) {
+      setFormError('Некорректный формат ссылки на аватар!');
+      setIsModal(true);
+      return;
     } else {
-      const newUser = {
-        ...form,
-        favorite: false,
-        id: userId,
-      };
-      UsersService.postUser(newUser);
-      setUsers([...users, newUser]);
+      const userId = `${Date.now()}`;
+      if (id) {
+        const updatedUser = {
+          ...user,
+          ...form,
+        };
+        UsersService.updateUserDataById(updatedUser, id);
+        setUsers(
+          users.map((user) => {
+            if (user.id === id) {
+              return updatedUser;
+            }
+            return user;
+          }),
+        );
+      } else {
+        const newUser = {
+          ...form,
+          favorite: false,
+          id: userId,
+        };
+        UsersService.postUser(newUser);
+        setUsers([...users, newUser]);
+      }
+      navigation('/users/' + `${id ? id : userId}`);
     }
-    navigation('/users/' + `${id ? id : userId}`);
   };
 
-  const handleCancel = (event)=>{
-    event.preventDefault()
-    navigation(-1)
-  }
-
+  const handleCancel = (event) => {
+    event.preventDefault();
+    navigation(-1);
+  };
   return (
     <div className='form__container'>
       {userError && <p>{userError}</p>}
@@ -126,8 +158,13 @@ export const UserEdit = () => {
             <Button type='submit' onClick={(event) => saveUserData(event)}>
               Save
             </Button>
-            <Button type='default' onClick={(e)=>handleCancel(e)}>Cancel</Button>
+            <Button type='default' onClick={(e) => handleCancel(e)}>
+              Cancel
+            </Button>
           </div>
+          {isModal && (
+            <Modal title='Error validations!' description={formError} setIsModal={setIsModal} />
+          )}
         </form>
       )}
     </div>
