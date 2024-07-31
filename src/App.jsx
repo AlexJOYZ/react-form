@@ -5,6 +5,7 @@ import { Layout } from './components/Layout';
 import { Loader } from './components/UI/loader/Loader';
 import { UsersContext } from './context';
 import { ErrorPage } from './pages/ErrorPage';
+import { Index } from './pages/Index';
 import { UserEdit } from './pages/UserEdit';
 import { UserIdPage } from './pages/UserIdPage';
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     loader: Loader,
     children: [
+      { index: true, element: <Index /> },
       { path: '/users/:userId', element: <UserIdPage /> },
       { path: '/edit', element: <UserEdit /> },
       { path: '/users/edit/:id', element: <UserEdit /> },

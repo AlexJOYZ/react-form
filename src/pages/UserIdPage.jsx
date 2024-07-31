@@ -7,6 +7,7 @@ import { useFetching } from '../hooks/useFetching';
 import { Button } from '../components/UI/button/Button';
 import { UsersContext } from '../context';
 import '../styles/userId.css';
+import { ErrorPage } from './ErrorPage';
 
 export const UserIdPage = () => {
   const { users, setUsers } = useContext(UsersContext);
@@ -23,8 +24,6 @@ export const UserIdPage = () => {
     fetchUser();
   }, [userId]);
 
-  
-
   const deleteUser = (event) => {
     event.preventDefault();
     setUsers(users.filter((user) => userId !== user.id));
@@ -34,12 +33,10 @@ export const UserIdPage = () => {
 
   const toggleFavorite = () => {
     setUser({ ...user, favorite: !user.favorite });
-    UsersService.updateUserDataById({ ...user, favorite: !user.favorite },userId);
-
+    UsersService.updateUserDataById({ ...user, favorite: !user.favorite }, userId);
   };
 
-
-  if (userErr) return <p>{userErr}</p>
+  if (userErr) return <ErrorPage />;
 
   return (
     <article className='user__page'>

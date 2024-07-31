@@ -82,48 +82,12 @@
       "favorite": false
     },
     {
-      "id": "1722330345937",
-      "firstName": "111111111111111111",
-      "lastName": "11111111111111111",
-      "twitter": "111111111111111",
-      "notes": "1111111111",
-      "avatar": "11111111",
-      "favorite": false
-    },
-    {
-      "id": "1722330632762",
-      "firstName": "111111111111111111",
-      "lastName": "11111111111111111",
-      "twitter": "111111111111111",
-      "notes": "1111111111",
-      "avatar": "https://www.youtube.com/watch?v=BGKbJ2aXCog",
-      "favorite": false
-    },
-    {
-      "id": "1722331515843",
-      "firstName": "sdds",
-      "lastName": "sdasd",
-      "twitter": "@asdsa1",
-      "notes": "111111111111111111",
-      "avatar": "https://www.youtube.com/watch?v=BGKbJ2aXCog",
-      "favorite": false
-    },
-    {
-      "id": "1722331942059",
-      "firstName": "ddf",
-      "lastName": "xdsa",
-      "twitter": "@dsad!",
-      "notes": "aaa",
-      "avatar": "https://yandex.ru/search/?text=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BA%D0%B8+%D0%B8%D0%BC%D0%B5%D0%BD%D0%B0+%D0%B2+js&lr=198&clid=2411726",
-      "favorite": false
-    },
-    {
-      "id": "1722331982362",
-      "firstName": "qw",
-      "lastName": "dsasa",
-      "twitter": "@fas",
-      "notes": "1",
-      "avatar": "https://yandex.ru/search/?text=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BA%D0%B8+%D0%B8%D0%BC%D0%B5%D0%BD%D0%B0+%D0%B2+js&lr=198&clid=2411726",
+      "id": "1722413927654",
+      "firstName": "necromant",
+      "lastName": "sleletovich",
+      "twitter": "@necromentos",
+      "notes": "skeletons",
+      "avatar": "https://robohash.org/necromant",
       "favorite": true
     }
   ]
